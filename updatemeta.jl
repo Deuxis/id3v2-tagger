@@ -1,13 +1,5 @@
-#!/bin/julia
+#!/usr/bin/env julia
 using Base.Filesystem
-
-#= Currently targeting the structure:
-rootdir: <artist>
-(sub)dirname: <album name> (<date>)
-filename: <track number> - <title><untracked extension or nothing>
-
-A "meta" file in a directory contains tab-separated pairs that explicitly specify meta, skipping the parsing from dirname. For example, an "ACDC" directory containing an "ACDC/meta" file containing "artist	AC/DC" line will specify the artist of everything found in the directory to be "AC/DC", not "ACDC".
-=#
 
 struct Meta
 	artist::Vector{String}
@@ -23,7 +15,7 @@ Meta() = Meta(Vector{String}(), Vector{String}(), Vector{String}(), Vector{Strin
 
 Parse a pair file into a Dict.
 
-A pair file consists of lines containing key\tvalue pairs.
+A pair file consists of lines containing `key<tab>value` pairs.
 """
 function parse_pairfile(path::AbstractString)
 	dict = Dict{Symbol, String}()
@@ -76,6 +68,6 @@ for (path, dirs, files) in walkdir(rootdir)
 			push!(converter_args, "--track", tracknum)
 		end
 		println.(converter_args)
-		run(`id3v2 $converter_args $fullpath`)
+		run(`id3v2 $converter_args "$fullpath"`)
 	end
 end
