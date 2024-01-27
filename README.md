@@ -21,7 +21,7 @@ subdirectory: `<album name> (<optional year>)`
 
 filename: `<optional track number> - <title><untracked extension or nothing>`
 
-A "meta" file in the root directory, if existent, should contain tab-separated pairs that explicitly specify meta, skipping the parsing from dirname.
+A "meta" file in the root directory, if existent, should contain tab-separated pairs that explicitly specify metadata, skipping the parsing from dirname.
 For example, an "ACDC" directory containing a "meta" file containing an `artist<tab>AC/DC` line will specify the artist of everything found in the directory to be "AC/DC", not "ACDC".
 
 ## Requirements:
@@ -32,7 +32,7 @@ For example, an "ACDC" directory containing a "meta" file containing an `artist<
 - `rsync`
 
 # Installing:
-If you so desire you can make the script accessible from anywhere by name like any other commandline utility, by simply creating a symbolic link with an arbitrary name in a PATH directory pointing to the script.
+You can make the script accessible from anywhere by name like any other commandline utility by creating a symbolic link in any PATH directory pointing to the script. Or, you know, just drop it into /usr/bin/, I'm not your mom.
 
 Example:
 ```sh
